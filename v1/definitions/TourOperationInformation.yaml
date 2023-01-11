@@ -1,0 +1,9 @@
+TourOperationInformation:
+  type: "object"
+  properties:
+    tourOperator:
+      $ref: "./CompanyContactInformation.yaml#/CompanyContactInformation"
+    insolvencyProtection:
+      $ref: "./CompanyContactInformation.yaml#/CompanyContactInformation"
+    insolvencyLiquidator:
+      $ref: "./CompanyContactInformation.yaml#/CompanyContactInformation"

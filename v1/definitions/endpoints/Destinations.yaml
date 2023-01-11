@@ -1,0 +1,38 @@
+Destinations:
+  get:
+      tags:
+      - "destinations"
+      summary: "Returns a filtered list of destinations"
+      description: ""
+      operationId: "getDestinations"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "partialDestinationName"
+        in: "query"
+        description: "Partial name of the destination"
+        required: true
+        type: "string"
+      - name: "type"
+        in: "query"
+        description: "Destination type"
+        required: false
+        type: "string"
+        enum: ["region", "location", "hotel"]
+        default: "all"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number or results returned"
+        type: "integer"
+        default: 10
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "../Destination.yaml#/Destination"
+        400:
+          description: "No partial destination name provided"
+          schema:
+            $ref: "../RequestError.yaml#/RequestError"

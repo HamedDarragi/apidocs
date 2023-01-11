@@ -1,0 +1,18 @@
+HotelOffer:
+  type: "object"
+  properties:
+    roomType:
+      $ref: "./RoomType.yaml#/RoomType"
+    boardType:
+      $ref: "./BoardType.yaml#/BoardType"
+    roomLocated:
+      type: "array"
+      items:
+        $ref: "./RoomLocated.yaml#/RoomLocated"
+    facility:
+      type: "array"
+      items:
+        $ref: "./Facility.yaml#/Facility"
+    hotel:
+      $ref: "./Hotel.yaml#/Hotel"
+

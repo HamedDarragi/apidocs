@@ -1,0 +1,147 @@
+OffersPackage:
+  get:
+      tags:
+      - "offers"
+      summary: "Returns a list of package offers"
+      description: ""
+      operationId: "getOffersPackage"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "fromDate"
+        in: "query"
+        description: "Start date(yyyy-mm-dd)"
+        required: true
+        type: "string"
+        format: "date"
+      - name: "toDate"
+        in: "query"
+        description: "End date(yyyy-mm-dd)"
+        required: true
+        type: "string"
+        format: "date"
+      - name: "flexibleDays"
+        in: "query"
+        description: "Number of days that the user is flexible"
+        type: "integer"
+        format: "int32"
+        default: 0
+      - name: "departureAirport"
+        in: "query"
+        description: "IATA codes of the departure airport. Use [HAM] for Hamburg, [RLG] for Rostock and [TXL, BER, SXF] for Berlin"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+          enum: ["HAM", "RLG", "TXL", "BER", "SXF"]
+      - name: "destinationId"
+        in: "query"
+        description: "Destination ID"
+        required: true
+        type: "string"
+      - name: "adults"
+        in: "query"
+        description: "Number of adults traveller"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "children"
+        in: "query"
+        description: "Array of children ages"
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+      - name: "page"
+        in: "query"
+        description: "Request page"
+        type: "integer"
+        format: "int32"
+        default: 1
+      - name: "perPage"
+        in: "query"
+        description: "Number of hotels per page"
+        type: "integer"
+        format: "int32"
+        default: 15
+      - name: "sortBy"
+        in: "query"
+        description: "Sort criteria"
+        type: "string"
+        enum: ["price", "reviewScore", "hotelCategory"]
+        default: "price"
+      - name: "sortOrder"
+        in: "query"
+        description: "Sort order"
+        type: "string"
+        enum: ["asc", "desc"]
+        default: "asc"
+      - name: "minPrice"
+        in: "query"
+        description: "Minimum offer price"
+        type: "integer"
+        format: "int32"
+      - name: "maxPrice"
+        in: "query"
+        description: "Maximum offer price"
+        type: "integer"
+        format: "int32"
+      - name: "minHotelCategory"
+        in: "query"
+        description: "Minimum hotel category"
+        type: "integer"
+        format: "int32"
+        maximum: 5
+        minimum: 1
+        default: 1
+      - name: "roomTypeCode"
+        in: "query"
+        description: "Code of the room type. Possible values provided by filters search"
+        type: "array"
+        items:
+          type: "string"
+      - name: "boardTypeCode"
+        in: "query"
+        description: "Code of the board type. Possible values provided by filters search"
+        type: "array"
+        items:
+          type: "string"
+      - name: "roomLocatedCode"
+        in: "query"
+        description: "Room location. MB - Havudsigt, SB - Havblik, PB - Pooludsigt, LB - Landudsigt, BB - Bjergudsigt, FB -  Udsigt til have"
+        type: "string"
+        items:
+          type: "string"
+          enum: ["MB","SB", "PB", "LB", "BB", "FB"]
+      - name: "keywords"
+        in: "query"
+        description: "Keywords. Possible values provided by filters search."
+        type: "array"
+        items:
+          type: "string"
+      - name: "locationId"
+        in: "query"
+        description: "Hotel location id. Possible values provided by filters search"
+        type: "string"
+      - name: "directFlight"
+        in: "query"
+        description: "Flight directness"
+        type: "boolean"
+        enum: ["true", "false"]
+        default: "false"
+      responses:
+        200:
+          description: "List of hotels offer that matches the criteria"
+          headers:
+            X-Total-Count:
+              type: "integer"
+              format: "int32"
+              description: "Total number of hotel offers available"
+          schema:
+            type: "array"
+            items:
+              $ref: "../PackageOffer.yaml#/PackageOffer"
+        400:
+          description: "Request error"
+          schema:
+            $ref: "../RequestError.yaml#/RequestError"

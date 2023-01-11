@@ -1,0 +1,16 @@
+Destination:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      type:
+        type: "string"
+        enum:
+          - "region"
+          - "location"
+          - "hotel"
+      name:
+        type: "string"
+      thumbnail:
+        type: "string"
+        format: "uri"

@@ -1,0 +1,7 @@
+BookingInformation:
+  type: "object"
+  properties:
+    package:
+      type: "boolean"
+    accommodatesDisabledGuests:
+      type: "boolean"

@@ -1,0 +1,7 @@
+BoardType:
+  type: "object"
+  properties:
+    code:
+      type: "string"
+    name:
+       type: "string"

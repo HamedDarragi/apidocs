@@ -1,0 +1,12 @@
+HelicopterVideo:
+  type: "object"
+  properties:
+    type:
+      type: "string"
+      enum: [ "any", "round", "coast" ]
+    thubmnail:
+       type: "string"
+       format: "uri"
+    url:
+       type: "string"
+       format: "uri"

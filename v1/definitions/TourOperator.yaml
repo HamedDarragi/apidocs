@@ -1,0 +1,10 @@
+TourOperator:
+  type: "object"
+  properties:
+    code:
+      type: "string"
+    name:
+       type: "string"
+    logo:
+      type: "string"
+      format: "uri"

@@ -1,0 +1,17 @@
+Location:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+    name:
+      type: "string"
+    region:
+       $ref: "#/Region"
+
+Region:
+ type: "object"
+ properties:
+   id:
+    type: "string"
+   name:
+     type: "string"

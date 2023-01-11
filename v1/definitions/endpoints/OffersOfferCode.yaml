@@ -1,0 +1,30 @@
+OffersOfferCode:
+  get:
+      tags:
+      - "offers"
+      summary: "Verifies an offer"
+      description: ""
+      operationId: "getOfferOfferCode"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "offerCode"
+        in: "path"
+        description: "Offer code"
+        required: true
+        type: "string"
+      - in: "header"
+        name: "X-Mock-Response"
+        description: "On staging and dev env, can be used to force a certain response"
+        enum: [ "OK", "RQ", "XX", "NK", "FLIGHT_CHANGE", "PRICE_CHANGE" ]
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "../VerifiedOffer.yaml#/VerifiedOffer"
+        400:
+          description: "No offerCode provided"
+          schema:
+            $ref: "../RequestError.yaml#/RequestError"

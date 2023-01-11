@@ -1,0 +1,13 @@
+BookingDraft:
+  type: "object"
+  properties:
+    verifiedOffer:
+      $ref: "./VerifiedOffer.yaml#/VerifiedOffer"
+    destination:
+      $ref: "./DestinationInfo.yaml#/DestinationInfo"
+    travellersOverview:
+      $ref: "./TravellersOverview.yaml#/TravellersOverview"
+    documents:
+      type: "array"
+      items:
+        $ref: "./Document.yaml#/Document"

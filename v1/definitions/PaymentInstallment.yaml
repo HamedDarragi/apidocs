@@ -1,0 +1,8 @@
+PaymentInstallment:
+  type: "object"
+  properties:
+    price:
+      $ref: "./Price.yaml#/Price"
+    term:
+      type: "string"
+      format: "date-time"

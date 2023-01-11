@@ -1,0 +1,9 @@
+PaymentInformation:
+  type: "object"
+  properties:
+    fee:
+      $ref: "./Price.yaml#/Price"
+    deposit:
+      $ref: "./PaymentInstallment.yaml#/PaymentInstallment"
+    final:
+      $ref: "./PaymentInstallment.yaml#/PaymentInstallment"

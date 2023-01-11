@@ -1,0 +1,9 @@
+Document:
+  type: "object"
+  properties:
+    type:
+      type: "string"
+      enum: [ "visa", "form", "conditions" ]
+    url:
+       type: "string"
+       format: "uri"

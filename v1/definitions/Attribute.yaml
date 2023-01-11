@@ -1,0 +1,11 @@
+Attribute:
+  type: "object"
+  properties:
+    code:
+      type: "string"
+    name:
+      type: "string"
+    unit:
+      type: "string"
+    value:
+      type: "string"

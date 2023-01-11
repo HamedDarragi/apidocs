@@ -1,0 +1,11 @@
+TravelDate:
+  type: "object"
+  properties:
+    fromDate:
+      type: "string"
+      format: "date"
+      description: "Start date(yyyy-mm-dd)"
+    toDate:
+      type: "string"
+      format: "date"
+      description: "End date(yyyy-mm-dd)"

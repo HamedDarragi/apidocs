@@ -1,0 +1,101 @@
+BookingsDraftsDraftId:
+
+  get:
+    tags:
+    - "bookings"
+    security:
+    - Bearer: []
+    summary: "Get a booking draft"
+    description: ""
+    operationId: "getBookingsDraftsDraftId"
+    consumes:
+    - "application/json"
+    produces:
+    - "application/json"
+    parameters:
+    - in: "header"
+      name: "Authorization"
+      description: "Authorization: Bearer &lt;token&gt;"
+      schema:
+        type: "string"
+    - in: "query"
+      name: "bookingDraftId"
+      description: "Booking draft ID"
+      required: true
+      type: "string"
+    responses:
+      200:
+        description: "successful operation"
+        schema:
+          $ref: "../BookingDraft.yaml#/BookingDraft"
+      400:
+        description: "Invalid Payload"
+        schema:
+          $ref: "../RequestError.yaml#/RequestError"
+      401:
+        description: "Unauthorized"
+
+  patch:
+    tags:
+    - "bookings"
+    security:
+    - Bearer: []
+    summary: "Updates a booking draft"
+    description: ""
+    operationId: "patchBookingsDrafts"
+    consumes:
+    - "application/json"
+    produces:
+    - "application/json"
+    parameters:
+    - in: "header"
+      name: "Authorization"
+      description: "Authorization: Bearer &lt;token&gt;"
+      schema:
+        type: "string"
+    - in: "query"
+      name: "bookingDraftId"
+      description: "Booking draft ID"
+      required: true
+      type: "string"
+    - in: "body"
+      name: "body"
+      description: "Booking draft request"
+      required: true
+      schema:
+        $ref: "#/definitions/BookingDraftPathRequest"
+    responses:
+      200:
+        description: "successful operation"
+      400:
+        description: "Invalid Payload"
+        schema:
+          $ref: "../RequestError.yaml#/RequestError"
+      401:
+        description: "Unauthorized"
+
+
+
+definitions:
+
+  BookingDraftPathRequest:
+    type: "object"
+    properties:
+      travellers:
+        type: "array"
+        items:
+          $ref: "../Traveller.yaml#/Traveller"
+      customer:
+        $ref: "../Customer.yaml#/Customer"
+      comment:
+        type: "string"
+      subscribeCustomerToNewsletter:
+        type: "boolean"
+      paymentTypeCode:
+        type: "string"
+      creditCard:
+        $ref: "../CreditCard.yaml#/CreditCard"
+      totalPriceEuro:
+        $ref: "../Price.yaml#/Price"
+      personPriceEuro:
+        $ref: "../Price.yaml#/Price"

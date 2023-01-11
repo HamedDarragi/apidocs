@@ -1,0 +1,16 @@
+Countries:
+  get:
+    tags:
+    - "countries"
+    summary: "Get a list of countries"
+    description: ""
+    operationId: "getCountries"
+    produces:
+    - "application/json"
+    responses:
+      200:
+        description: "successful operation"
+        schema:
+          type: "array"
+          items:
+            $ref: "../CountryInfo.yaml#/CountryInfo"

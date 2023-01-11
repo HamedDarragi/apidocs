@@ -1,0 +1,15 @@
+PaymentType:
+  type: "object"
+  properties:
+    type:
+      type: "string"
+      description: "Payment type. Credit card - credit/debit card, invoice - bank transfer"
+      enum: ['credit_card', 'invoice']
+    code:
+      type: "string"
+    name:
+      type: "string"
+    surcharge:
+      $ref: "./Price.yaml#/Price"
+    surchargeEuro:
+      $ref: "./Price.yaml#/Price"

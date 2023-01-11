@@ -1,0 +1,88 @@
+<h1>SkovRejser API v 1.0.0</h1>
+
+<h2>Intro</h2>
+<p>Below you will find a few notes and insights on how SkovRejser API works.</p>
+<p>Remember: in the German TO universe <strong>assumption is the mother of all fuck-ups</strong>. Please do ask instead of assuming behaviour.</p>
+
+<h2>Authentication</h2>
+
+<h3>General authentication mechanism</h3>
+<p>User authentication will be done using <a href="https://jwt.io/" target="_blank">JWT</a>.</p>
+<p>You will obtain a JWT from the <i>/tokens</i> endpoint. You can then send the token in the <i>Authorization</i> header on every request that requires the user to be logged in.</p>
+<p>Please be aware that JWT are short lived and they will need to be refreshed periodically. You should check the token expiration date periodically and refresh it when required.</p>
+
+<h2>API Usage in booking workflow</h2>
+
+<h3>This is a mock API</h3>
+<p>This is a mock API. Some endpoints are not mocked, others are mocked partially or return a static response. Please keep that in mind.</p>
+
+<h3>Destination autocomplete</h3>
+<p>Probably the first step is the destination autocomplete. you can use the <i>/destinations</i> endpoint for this. You will obtain 3 type of destinations from this search:
+region, location and hotel. You should use the id of the chosen destination in the hotel search.</p>
+
+<h3>Hotel search</h3>
+<p>Get a list of hotels by using the <i>/offers/package</i> endpoint. Possible filter that can be applied will be supplied by the <i>/filters/packageOffers</i>, as they are faceted to the current search.</p>
+<p>Depending on the destination type provided to the search, this endpoint can be used to:</p>
+<ul>
+    <li>Obtain a list of the best package offer for each available hotel(when destination is of type region or location)</li>
+    <li>Obtain a list of the best package offer for a given hotel, for different periods(when destination is of type hotel)</li>
+</ul>
+<p>Be aware that:</p>
+<ul>
+    <li>Not all hotels have a rating structure</li>
+    <li>Not all hotels have a thumbnail or a preview text</li>
+</ul>
+
+<h4>Filtering</h4>
+<p>Use the <i>/filters/packageOffers</i> endpoint to determine which filters can be applied to a given search.</p>
+
+<h3>Hotel Offers</h3>
+<p>Once a user has selected a hotel, you can then obtain all the package offers associated to the hotel from the <i>/offers/packages/{hotelId}</i> endpoint.</p>
+<p>It is recommended to make 2 searches, in parallel, with <i>transferIncluded=true</i> and <i>transferIncluded=false</i> and merge the obtained lists.</p>
+<p>Each offer should be verified before displaying it to the user, as it might be cached.</p>
+<p>If the user set filters on the package search, you should also use them on the offers search.</p>
+
+<h3>Verify Offers</h3>
+<p>Verifying an offer is done using the <i>/offers/{offerCode}</i> endpoint. Offer verification ensures that:</p>
+<ul>
+    <li>offer is still available</li>
+    <li>determines the correct price</li>
+    <li>determines the correct flight schedule</li>
+</ul>
+<p>A verify response might return different price and flight schedule. A verify response will not return any data about the transfer, room type, location and facility.
+    You should use the ones provided in the initial offer.</p>
+<p>A verify response will also contain the payment types allowed for the given offer.</p>
+
+<h3>Book Offers</h3>
+<p><strong>Bookings are binding. Please make extra sure during dev not to accidentally book one.</strong></p>
+<p><strong>Before submitting the booking, verify the offer once more, as it is possible for the price or flight schedule to change. In this case, advise the user of the change
+and require them to actively confirm the changes(with f.eks. a checkbox). It is also possible for an offer availability to expire in the time-frame spent filling out the booking form.</strong></p>
+<p><strong>Offers with verified status <i>RQ</i> have to be presented to the user with a disclaimer.</strong></p>
+<p>If the user is logged in, you should autocomplete the customer section of the form with the user data.</p>
+<p>Only allow the user to use payment types provided in the offer type.</p>
+
+<h4>User creation</h4>
+<p>If the user is not logged in, you should create one or ask the user to log in before submitting a booking request.</p>
+<p>If the user is logged in, please consider updating the user data with the one in the customer section.</p>
+
+<h4>Mocking the response of a booking or a verify</h4>
+<p>On dev and staging environments it will be possible to mock the response obtained from a booking or verify request. This can be done by adding the
+<i>X-Mock-Response</i> header to the request, with one of the response scenarios available in the enums. <br>
+If the header is set, the response will be delayed by a random number of seconds.
+</p>
+
+<h3>Updating a user password</h3>
+<p>You can update the user password by sending a PATCH request to <i>/user</i>. The new password needs to be in plain text.
+    If the authorization token used does not contained a <i>password_modifier</i> claim(was not obtained using a password reset token),
+    the additional parameter <i>identityChallenge</i> will be required in order to prove user's identity.
+</p>
+
+<h3>Password Reset</h3>
+<ol>
+    <li>Making a post request to <i>/tokens/passwordReset</i>. This will send an email to the user with a URL containing a token.</li>
+    <li><i>(Optionally)</i> Use the <i>/tokens/passwordReset/{token}</i> to validate that the token is valid and has not expired.</li>
+    <li>Get a JWT from <i>/tokens</i>, using the reset password token from the URL.</li>
+    <li>Use the said JWT to update the user password.</li>
+    <li>Discard of the JWT obtained with the password reset token.</li>
+</ol>
+

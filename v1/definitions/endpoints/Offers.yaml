@@ -1,0 +1,34 @@
+Offers:
+  get:
+      tags:
+      - "offers"
+      summary: "Verifies  batch of offers"
+      description: ""
+      operationId: "getOffers"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "offerCode"
+        in: "query"
+        description: "An array of offer codes to verify. It is recommended that the size to not exceed 10"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+      - in: "header"
+        name: "X-Mock-Response"
+        description: "On staging and dev env, can be used to force a certain response"
+        enum: [ "OK", "RQ", "XX", "NK", "FLIGHT_CHANGE", "PRICE_CHANGE" ]
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "../VerifiedOffer.yaml#/VerifiedOffer"
+        400:
+          description: "No offerCode provided"
+          schema:
+            $ref: "../RequestError.yaml#/RequestError"

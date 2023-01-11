@@ -1,0 +1,20 @@
+CountriesCountryCode:
+  get:
+    tags:
+    - "countries"
+    summary: "Get a country"
+    description: ""
+    operationId: "getCountriesCountryCode"
+    produces:
+    - "application/json"
+    parameters:
+    - name: "countryCode"
+      in: "query"
+      description: "Country code"
+      required: true
+      type: "string"
+    responses:
+      200:
+        description: "successful operation"
+        schema:
+          $ref: "../CountryInfo.yaml#/CountryInfo"

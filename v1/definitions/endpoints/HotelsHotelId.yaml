@@ -1,0 +1,24 @@
+HotelsHotelId:
+  get:
+      tags:
+      - "hotels"
+      summary: "Returns a hotel"
+      description: ""
+      operationId: "getHotel"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "hotelId"
+        in: "path"
+        description: "Hotel ID"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "../Hotel.yaml#/Hotel"
+        400:
+          description: "No partial destination name provided"
+          schema:
+            $ref: "../RequestError.yaml#/RequestError"

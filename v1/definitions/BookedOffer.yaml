@@ -1,0 +1,12 @@
+BookedOffer:
+  type: "object"
+  properties:
+    bookingCode:
+      type: "string"
+    travellers:
+      type: "array"
+      items:
+        $ref: "./Traveller.yaml#/Traveller"
+    packageOffer:
+      $ref: "./PackageOffer.yaml#/PackageOffer"
+

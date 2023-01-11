@@ -1,0 +1,60 @@
+{
+  "destinations": {
+    "regions": [
+      {
+        "code": "1",
+        "name": "Turkey"
+      },
+      {
+        "code": "2",
+        "name": "Egypten"
+      },
+      {
+        "code": "3",
+        "name": "Turchicken"
+      }
+    ],
+    "hotels": [
+      {
+        "code": "10",
+        "name": "Turkey Hotel"
+      },
+      {
+        "code": "20",
+        "name": "Egypten Hotel"
+      },
+      {
+        "code": "30",
+        "name": "Turchicken Hotel"
+      }
+    ]
+  },
+  "regions": [
+    {
+      "code": "1",
+      "name": "Turkey"
+    },
+    {
+      "code": "2",
+      "name": "Egypten"
+    },
+    {
+      "code": "3",
+      "name": "Turchicken"
+    }
+  ],
+  "hotels": [
+    {
+      "code": "10",
+      "name": "Turkey Hotel"
+    },
+    {
+      "code": "20",
+      "name": "Egypten Hotel"
+    },
+    {
+      "code": "30",
+      "name": "Turchicken Hotel"
+    }
+  ]
+}

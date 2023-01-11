@@ -1,0 +1,5 @@
+FlightOffer:
+  type: "object"
+  properties:
+    flight:
+      $ref: "./Flight.yaml#/Flight"

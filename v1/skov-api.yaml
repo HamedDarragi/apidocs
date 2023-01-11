@@ -1,0 +1,129 @@
+swagger: "2.0"
+info:
+  description: "SkovRejser 2018 API"
+  version: "1.0.0"
+  title: "SkovRejser API"
+host: "api.skovrejser.dk"
+basePath: "/api/"
+tags:
+- name: "tokens"
+  description: "Tokens endpoint. Token used: JWT. Beware of expiration time"
+- name: "destinations"
+  description: "Destinations endpoint"
+- name: "offers"
+  description: "Offers endpoint"
+- name: "hotels"
+  description: "Hotels endpoint"
+- name: "filters"
+  description: "Filters endpoint"
+- name: "favorites"
+  description: "Favorites endpoint"
+- name: "bookings"
+  description: "Bookings endpoint"
+- name: "user"
+  description: "User endpoint"
+- name: "subscriptions"
+  description: "Subscriptions endpoint"
+- name: "countries"
+  description: "Countries endpoint"
+schemes:
+- "https"
+securityDefinitions:
+  Bearer:
+    type: JWT
+    name: Authorization
+    in: header
+paths:
+
+  /tokens:
+    $ref: "./definitions/endpoints/Tokens.yaml#/Tokens"
+
+  /tokens/passwordReset:
+    $ref: "./definitions/endpoints/TokensPasswordReset.yaml#/TokensPasswordReset"
+
+
+  /tokens/passwordReset/{token}:
+    $ref: "./definitions/endpoints/TokensPasswordResetToken.yaml#/TokensPasswordResetToken"
+
+  /destinations:
+    $ref: "./definitions/endpoints/Destinations.yaml#/Destinations"
+
+  /destinations/{destinationId}:
+    $ref: "./definitions/endpoints/DestinationsDestinationId.yaml#/DestinationDestinationId"
+
+  /offers/package:
+    $ref: "./definitions/endpoints/OffersPackage.yaml#/OffersPackage"
+
+  /offers/package/{hotelId}:
+    $ref: "./definitions/endpoints/OffersPackageHotelId.yaml#/OffersPackageHotelId"
+
+  /offers/{offerCode}:
+    $ref: "./definitions/endpoints/OffersOfferCode.yaml#/OffersOfferCode"
+
+  /offers:
+    $ref: "./definitions/endpoints/Offers.yaml#/Offers"
+
+  /hotels/{hotelId}:
+    $ref: "./definitions/endpoints/HotelsHotelId.yaml#/HotelsHotelId"
+
+  /hotels/{hotelId}/tourOperatorDescription:
+    $ref: "./definitions/endpoints/HotelsHotelIdTourOperatorDescription.yaml#/HotelsHotelIdTourOperatorDescription"
+
+  /filters/packageOffers:
+    $ref: "./definitions/endpoints/FiltersHotelOffers.yaml#/FiltersHotelOffers"
+
+  /bookings:
+    $ref: "./definitions/endpoints/Bookings.yaml#/Bookings"
+
+  /bookings/drafts:
+    $ref: "./definitions/endpoints/BookingsDrafts.yaml#/BookingsDrafts"
+
+  /bookings/drafts/{bookingDraftId}:
+    $ref: "./definitions/endpoints/BookingsDraftsDraftId.yaml#/BookingsDraftsDraftId"
+
+  /favorites:
+    $ref: "./definitions/endpoints/Favorites.yaml#/Favorites"
+
+  /favorites/{favoriteId}:
+    $ref: "./definitions/endpoints/FavoritesFavoriteId.yaml#/FavoritesFavoriteId"
+
+  /user:
+    $ref: "./definitions/endpoints/User.yaml#/User"
+
+  /subscriptions/newsletter:
+    $ref: "./definitions/endpoints/SubscriptionsNewsletter.yaml#/SubscriptionsNewsletter"
+
+  /countries:
+    $ref: "./definitions/endpoints/Countries.yaml#/Countries"
+
+  /countries/{countryCode}:
+    $ref: "./definitions/endpoints/CountriesCountryCode.yaml#/CountriesCountryCode"
+
+definitions:
+
+  RequestError:
+    $ref: "./definitions/RequestError.yaml#/RequestError"
+
+  Destination:
+    $ref: "./definitions/Destination.yaml#/Destination"
+
+  DestinationInfo:
+    $ref: "./definitions/DestinationInfo.yaml#/DestinationInfo"
+
+  PackageOffer:
+    $ref: "./definitions/PackageOffer.yaml#/PackageOffer"
+
+  FavoredOffer:
+    $ref: "./definitions/FavoredOffer.yaml#/FavoredOffer"
+
+  VerifiedOffer:
+    $ref: "./definitions/VerifiedOffer.yaml#/VerifiedOffer"
+
+  Hotel:
+    $ref: "./definitions/Hotel.yaml#/Hotel"
+
+  HotelFilter:
+    $ref: "./definitions/HotelFilter.yaml#/HotelFilter"
+
+  User:
+    $ref: "./definitions/User.yaml#/User"

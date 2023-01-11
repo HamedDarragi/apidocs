@@ -1,0 +1,34 @@
+Hotel:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+    name:
+      type: "string"
+    category:
+      type: "integer"
+      format: "int32"
+      minimum: 1
+      maximum: 5
+    rating:
+      $ref: "./Rating.yaml#/Rating"
+    mediaData:
+      $ref: "./MediaData.yaml#/MediaData"
+    facts:
+      type: "array"
+      items:
+        $ref: "./Fact.yaml#/Fact"
+    keywords:
+      type: "array"
+      items:
+        $ref: "./Keyword.yaml#/Keyword"
+    helicopterVideos:
+      type: "array"
+      items:
+        $ref: "./HelicopterVideo.yaml#/HelicopterVideo"
+    latitude:
+      type: "string"
+    longitude:
+      type: "string"
+    location:
+       $ref: "./Location.yaml#/Location"

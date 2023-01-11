@@ -1,0 +1,9 @@
+FavoredOffer:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+    hotel:
+      $ref: "./Hotel.yaml#/Hotel"
+    search:
+      $ref: "./SavedSearch.yaml#/SavedSearch"

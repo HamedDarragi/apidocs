@@ -1,0 +1,24 @@
+Traveller:
+  type: "object"
+  properties:
+    firstName:
+      type: "string"
+    lastName:
+       type: "string"
+    dateOfBirth:
+      type: "string"
+      format: "date"
+    nationality:
+      type: "string"
+      description: "Code for the nationality country, ISO alpha2"
+      minLength: 2
+      maxLength: 2
+    residenceCountryCode:
+      type: "string"
+      description: "Code for the country of residence, ISO alpha2"
+      minLength: 2
+      maxLength: 2
+    type:
+       type: "string"
+       description: "Use H for male, D for female. K for children and B for infant"
+       enum: ["H", "D", "K", "B"]

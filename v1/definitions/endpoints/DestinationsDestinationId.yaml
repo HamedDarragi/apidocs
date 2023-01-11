@@ -1,0 +1,38 @@
+DestinationDestinationId:
+  get:
+      tags:
+      - "destinations"
+      summary: "Returns information about a destination"
+      description: ""
+      operationId: "getDestinationsDestinationId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "destinationId"
+        in: "path"
+        description: "Destination ID"
+        required: true
+        type: "string"
+      - name: "fromDate"
+        in: "query"
+        description: "Start date(yyyy-mm-dd)"
+        required: true
+        type: "string"
+        format: "date"
+      - name: "toDate"
+        in: "query"
+        description: "End date(yyyy-mm-dd)"
+        required: true
+        type: "string"
+        format: "date"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "../DestinationInfo.yaml#/DestinationInfo"
+        400:
+          description: "No partial destination name provided"
+          schema:
+            $ref: "../RequestError.yaml#/RequestError"
+        404:
+          description: "Requested destination not found"

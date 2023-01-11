@@ -1,0 +1,174 @@
+User:
+  get:
+    tags:
+    - "user"
+    security:
+    - Bearer: []
+    summary: "Gets info about the authenticated user"
+    description: ""
+    operationId: "getUser"
+    consumes:
+    - "application/json"
+    produces:
+    - "application/json"
+    parameters:
+    - in: "header"
+      name: "Authorization"
+      description: "Authorization: Bearer &lt;token&gt;"
+      schema:
+        type: "string"
+      required: true
+    responses:
+      200:
+        description: "successful operation"
+        schema:
+          $ref: "../User.yaml#/User"
+      401:
+        description: "Unauthorized"
+
+  post:
+    tags:
+    - "user"
+    summary: "Creates an user"
+    description: ""
+    operationId: "postUser"
+    consumes:
+    - "application/json"
+    produces:
+    - "application/json"
+    parameters:
+    - in: "header"
+      name: "X-User-SID"
+      description: "An unique ID used in case of anonymous users. This will import the data in the newly created user"
+      schema:
+        type: "string"
+    - in: "body"
+      name: "body"
+      description: "Update Payload"
+      required: true
+      schema:
+        $ref: "#/definitions/CreateUserRequest"
+    responses:
+      200:
+        description: "successful operation"
+      401:
+        description: "Unauthorized"
+
+  patch:
+    tags:
+    - "user"
+    security:
+    - Bearer: []
+    summary: "Updates an user"
+    description: ""
+    operationId: "patchUser"
+    consumes:
+    - "application/json"
+    produces:
+    - "application/json"
+    parameters:
+    - in: "header"
+      name: "Authorization"
+      description: "Authorization: Bearer &lt;token&gt;"
+      schema:
+        type: "string"
+      required: true
+    - in: "body"
+      name: "body"
+      description: "Update Payload"
+      required: true
+      schema:
+        $ref: "#/definitions/PatchUserRequest"
+    responses:
+      200:
+        description: "successful operation"
+      401:
+        description: "Unauthorized"
+
+  delete:
+    tags:
+    - "user"
+    security:
+    - Bearer: []
+    parameters:
+    - in: "header"
+      name: "Authorization"
+      description: "Authorization: Bearer &lt;token&gt;"
+      schema:
+        type: "string"
+      required: true
+    summary: "Deletes the authenticated user"
+    operationId: "deleteUser"
+    responses:
+      200:
+        description: "successful operation"
+      401:
+        description: "Unauthorized"
+
+
+definitions:
+  CreateUserRequest:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+        format: "email"
+        required: true
+      password:
+        type: "string"
+      firstName:
+        type: "string"
+        required: true
+      lastName:
+        type: "string"
+        required: true
+      address:
+        type: "string"
+        required: false
+      zipCode:
+        type: "string"
+        required: false
+      city:
+        type: "string"
+        required: false
+      countryCode:
+        type: "string"
+        minLength: 2
+        maxLength: 2
+        required: false
+      phone:
+        type: "string"
+        required: false
+      subscribeNewsletter:
+        type: "boolean"
+        required: false
+        default: true
+
+  PatchUserRequest:
+    type: "object"
+    properties:
+      firstName:
+         type: "string"
+      lastName:
+          type: "string"
+      address:
+          type: "string"
+      zipCode:
+          type: "string"
+      city:
+          type: "string"
+      countryCode:
+          type: "string"
+          minLength: 2
+          maxLength: 2
+      email:
+          type: "string"
+          format: "email"
+      password:
+          type: "string"
+      identityChallenge:
+          type: "string"
+      phone:
+          type: "string"
+      subscribeNewsletter:
+        type: "boolean"

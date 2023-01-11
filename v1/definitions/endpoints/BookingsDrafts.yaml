@@ -1,0 +1,56 @@
+BookingsDrafts:
+  post:
+    tags:
+    - "bookings"
+    security:
+    - Bearer: []
+    summary: "Create a booking draft"
+    description: ""
+    operationId: "postBookingsDrafts"
+    consumes:
+    - "application/json"
+    produces:
+    - "application/json"
+    parameters:
+    - in: "header"
+      name: "Authorization"
+      description: "Authorization: Bearer &lt;token&gt;"
+      schema:
+        type: "string"
+    - in: "body"
+      name: "body"
+      description: "Booking draft request"
+      required: true
+      schema:
+        $ref: "#/definitions/BookingDraftRequest"
+    responses:
+      200:
+        description: "successful operation"
+        schema:
+          $ref: "#/definitions/BookingDraftResponse"
+      400:
+        description: "Invalid Payload"
+        schema:
+          $ref: "../RequestError.yaml#/RequestError"
+      401:
+        description: "Unauthorized"
+
+definitions:
+
+  BookingDraftRequest:
+    type: "object"
+    properties:
+      offerCode:
+        type: "string"
+      destinationId:
+        type: "string"
+      totalPriceEuro:
+        $ref: "../Price.yaml#/Price"
+      personPriceEuro:
+        $ref: "../Price.yaml#/Price"
+
+  BookingDraftResponse:
+    type: "object"
+    properties:
+      bookingDraftId:
+        type: "string"

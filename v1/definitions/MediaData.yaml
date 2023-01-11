@@ -1,0 +1,17 @@
+MediaData:
+  type: "object"
+  properties:
+    previewText:
+      $ref: "./Text.yaml#/Text"
+    description:
+      type: "array"
+      items:
+        $ref: "./Description.yaml#/Description"
+    thumbnail:
+      type: "string"
+      format: "uri"
+    images:
+      type: "array"
+      items:
+        type: "string"
+        format: "uri"

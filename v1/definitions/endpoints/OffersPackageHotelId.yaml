@@ -1,0 +1,104 @@
+OffersPackageHotelId:
+    get:
+      tags:
+      - "offers"
+      summary: "Returns a list of hotel offers"
+      description: ""
+      operationId: "getOffersPackageHotelId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "hotelId"
+        in: "path"
+        description: "Hotel ID"
+        required: true
+        type: "string"
+      - name: "transferIncluded"
+        in: "query"
+        description: "Transfer to/from airport included."
+        required: true
+        type: "boolean"
+        enum: ["true", "false"]
+      - name: "fromDate"
+        in: "query"
+        description: "Start date(yyyy-mm-dd)"
+        required: true
+        type: "string"
+        format: "date"
+      - name: "toDate"
+        in: "query"
+        description: "End date(yyyy-mm-dd)"
+        required: true
+        type: "string"
+        format: "date"
+      - name: "flexibleDays"
+        in: "query"
+        description: "Number of days that the user is flexible"
+        type: "integer"
+        format: "int32"
+        default: 0
+      - name: "departureAirport"
+        in: "query"
+        description: "IATA codes of the departure airport. Use [HAM] for Hamburg, [RLG] for Rostock and [TXL, BER, SXF] for Berlin"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+          enum: ["HAM", "RLG", "TXL", "BER", "SXF"]
+      - name: "adults"
+        in: "query"
+        description: "Number of adults traveller"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "children"
+        in: "query"
+        description: "Array of children ages"
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+      - name: "minPrice"
+        in: "query"
+        description: "Minimum offer price"
+        type: "integer"
+        format: "int32"
+      - name: "maxPrice"
+        in: "query"
+        description: "Maximum offer price"
+        type: "integer"
+        format: "int32"
+      - name: "roomTypeCode"
+        in: "query"
+        description: "Code of the room type. Possible values provided by filters search"
+        type: "array"
+        items:
+          type: "string"
+      - name: "boardTypeCode"
+        in: "query"
+        description: "Code of the board type. Possible values provided by filters search"
+        type: "array"
+        items:
+          type: "string"
+      - name: "roomLocatedCode"
+        in: "query"
+        description: "Room location. MB - Havudsigt, SB - Havblik, PB - Pooludsigt, LB - Landudsigt, BB - Bjergudsigt, FB -  Udsigt til have"
+        type: "array"
+        items:
+          type: "string"
+          enum: ["MB","SB", "PB", "LB", "BB", "FB"]
+      - name: "directFlight"
+        in: "query"
+        description: "Flight directness"
+        type: "boolean"
+        enum: ["true", "false"]
+        default: "false"
+      responses:
+        200:
+          description: "List of offers that matches the criteria for the hotel"
+          schema:
+            $ref: "../PackageOffer.yaml#/PackageOffer"
+        400:
+          description: "Request error"
+          schema:
+            $ref: "../RequestError.yaml#/RequestError"

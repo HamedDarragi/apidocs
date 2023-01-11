@@ -1,0 +1,21 @@
+Leg:
+  type: "object"
+  properties:
+    departureAirport:
+      $ref: "./Airport.yaml#/Airport"
+    departureDateTime:
+      type: "string"
+      format: "date-time"
+    arrivalAirport:
+      $ref: "./Airport.yaml#/Airport"
+    arrivalDateTime:
+      type: "string"
+      format: "date-time"
+    flightNumber:
+      type: "string"
+    flightCarrier:
+      $ref: "./Carrier.yaml#/Carrier"
+    layOverTime:
+      type: "integer"
+      format: "int32"
+      description: "Estimated layover time to next leg, in seconds"

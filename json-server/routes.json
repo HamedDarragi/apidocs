@@ -1,0 +1,4 @@
+{
+  "/api/*": "/$1",
+  "/api/regions/*": "/api/regions?name=$1"
+}

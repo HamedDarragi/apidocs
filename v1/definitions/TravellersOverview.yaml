@@ -1,0 +1,9 @@
+TravellersOverview:
+  type: "object"
+  properties:
+    adults:
+      type: "number"
+    children:
+       type: "array"
+       items:
+         type: "number"

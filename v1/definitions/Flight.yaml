@@ -1,0 +1,23 @@
+Flight:
+  type: "object"
+  properties:
+    departureAirport:
+      $ref: "./Airport.yaml#/Airport"
+    arrivalAirport:
+      $ref: "./Airport.yaml#/Airport"
+    outboundLegList:
+      type: "array"
+      items:
+        $ref: "./Leg.yaml#/Leg"
+    inboundLegList:
+      type: "array"
+      items:
+        $ref: "./Leg.yaml#/Leg"
+    outboundEstimatedTravelTime:
+      type: "integer"
+      format: "int32"
+      description: "Estimated travel time, in seconds"
+    inboundEstimatedTravelTime:
+      type: "integer"
+      format: "int32"
+      description: "Estimated travel time, in seconds"

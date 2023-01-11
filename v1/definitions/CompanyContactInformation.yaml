@@ -1,0 +1,19 @@
+CompanyContactInformation:
+  type: "object"
+  properties:
+    name:
+       type: "string"
+    street:
+       type: "string"
+    zipCode:
+       type: "string"
+    city:
+       type: "string"
+    countryCode:
+       type: "string"
+    phone:
+       type: "string"
+    fax:
+       type: "string"
+    email:
+       type: "string"

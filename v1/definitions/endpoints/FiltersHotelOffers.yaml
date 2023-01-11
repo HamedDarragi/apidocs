@@ -1,0 +1,63 @@
+FiltersHotelOffers:
+  get:
+    tags:
+    - "filters"
+    summary: "Returns a list of filters for hotel offers"
+    description: ""
+    operationId: "getFiltersHotelOffers"
+    produces:
+    - "application/json"
+    parameters:
+    - name: "fromDate"
+      in: "query"
+      description: "Start date(yyyy-mm-dd)"
+      required: true
+      type: "string"
+      format: "date"
+    - name: "toDate"
+      in: "query"
+      description: "End date(yyyy-mm-dd)"
+      required: true
+      type: "string"
+      format: "date"
+    - name: "flexibleDays"
+      in: "query"
+      description: "Number of days that the user is flexible"
+      type: "integer"
+      format: "int32"
+      default: 0
+    - name: "departureAirport"
+      in: "query"
+      description: "IATA codes of the departure airport. Use [HAM] for Hamburg, [RLG] for Rostock and [TXL, BER, SXF] for Berlin"
+      required: true
+      type: "array"
+      items:
+        type: "string"
+        enum: ["HAM", "RLG", "TXL", "BER", "SXF"]
+    - name: "destinationId"
+      in: "query"
+      description: "Destination ID"
+      required: true
+      type: "string"
+    - name: "adults"
+      in: "query"
+      description: "Number of adults traveller"
+      required: true
+      type: "integer"
+      format: "int32"
+    - name: "children"
+      in: "query"
+      description: "Array of children ages"
+      type: "array"
+      items:
+        type: "integer"
+        format: "int32"
+    responses:
+      200:
+        description: "List of filters for the hotel"
+        schema:
+          $ref: "../HotelFilter.yaml#/HotelFilter"
+      400:
+        description: "Request error"
+        schema:
+          $ref: "../RequestError.yaml#/RequestError"

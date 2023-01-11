@@ -1,0 +1,11 @@
+Price:
+  type: "object"
+  properties:
+    value:
+      type: "integer"
+      format: "int32"
+    currency:
+      type: "string"
+      enum:
+        - "EUR"
+        - "DKK"

@@ -1,0 +1,15 @@
+CreditCard:
+  type: "object"
+  properties:
+    firstName:
+      type: "string"
+    lastName:
+          type: "string"
+    number:
+      type: "string"
+    cvc:
+      type: "string"
+    expirationDate:
+      type: "string"
+      format: "date"
+      description: "YYYY-MM"

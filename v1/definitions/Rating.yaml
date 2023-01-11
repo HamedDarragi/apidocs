@@ -1,0 +1,47 @@
+Rating:
+  type: "object"
+  properties:
+    count:
+      type: "integer"
+      format: "int32"
+      minimum: 0
+    recommendation:
+      type: "integer"
+      format: "int32"
+      minimum: 0
+      maximum: 100
+    overall:
+      type: "integer"
+      format: "int32"
+      minimum: 0
+      maximum: 100
+    hotel:
+      type: "integer"
+      format: "int32"
+      minimum: 0
+      maximum: 100
+    room:
+      type: "integer"
+      format: "int32"
+      minimum: 0
+      maximum: 100
+    location:
+      type: "integer"
+      format: "int32"
+      minimum: 0
+      maximum: 100
+    leisure:
+      type: "integer"
+      format: "int32"
+      minimum: 0
+      maximum: 100
+    service:
+      type: "integer"
+      format: "int32"
+      minimum: 0
+      maximum: 100
+    food:
+      type: "integer"
+      format: "int32"
+      minimum: 0
+      maximum: 100

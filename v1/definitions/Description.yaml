@@ -1,0 +1,7 @@
+Description:
+  type: "object"
+  properties:
+    title:
+      $ref: "./Text.yaml#/Text"
+    paragraph:
+      $ref: "./Text.yaml#/Text"

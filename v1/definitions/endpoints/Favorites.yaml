@@ -1,0 +1,93 @@
+Favorites:
+  post:
+    tags:
+    - "favorites"
+    security:
+    - Bearer: []
+    summary: "Save a favorite hotel and search"
+    description: ""
+    operationId: "postFavorites"
+    consumes:
+    - "application/json"
+    produces:
+    - "application/json"
+    parameters:
+    - in: "header"
+      name: "Authorization"
+      description: "Authorization: Bearer &lt;token&gt;"
+      schema:
+        type: "string"
+    - in: "header"
+      name: "X-User-SID"
+      description: "An unique ID used in case of anonymous users. If left blank, a random one will be created and returned in the response"
+      schema:
+        type: "string"
+    - in: "body"
+      name: "body"
+      description: "Post Payload"
+      required: true
+      schema:
+        $ref: "#/definitions/SaveFavoritesRequest"
+    responses:
+      200:
+        description: "successful operation"
+        schema:
+          $ref: "#/definitions/SaveFavoritesResponse"
+      401:
+        description: "Unauthorized"
+
+  get:
+    tags:
+    - "favorites"
+    security:
+    - Bearer: []
+    summary: "Get a list of favorites hotels and searches"
+    description: ""
+    operationId: "getFavorites"
+    produces:
+    - "application/json"
+    parameters:
+      - in: "header"
+        name: "Authorization"
+        description: "Authorization: Bearer &lt;token&gt;"
+        schema:
+          type: "string"
+      - in: "header"
+        name: "X-User-SID"
+        description: "An unique ID used in case of anonymous users"
+        schema:
+          type: "string"
+    responses:
+      200:
+        description: "successful operation"
+        headers:
+          X-Total-Count:
+            type: "integer"
+            format: "int32"
+            description: "Total number of hotel offers available"
+        schema:
+          type: "array"
+          items:
+            $ref: "../FavoredOffer.yaml#/FavoredOffer"
+      401:
+        description: "Unauthorized"
+
+definitions:
+  SaveFavoritesRequest:
+    type: "object"
+    properties:
+      search:
+        $ref: "../SavedSearch.yaml#/SavedSearch"
+      hotel:
+          type: "object"
+          properties:
+            hotelId:
+              type: "string"
+
+  SaveFavoritesResponse:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      userSID:
+        type: "string"

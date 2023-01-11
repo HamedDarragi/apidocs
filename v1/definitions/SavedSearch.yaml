@@ -1,0 +1,27 @@
+SavedSearch:
+  type: "object"
+  properties:
+    fromDate:
+      type: "string"
+      format: "date"
+    toDate:
+      type: "string"
+      format: "date"
+    flexibleDays:
+      type: "integer"
+      format: "int32"
+    departureAirport:
+      type: "array"
+      items:
+        type: "string"
+    destinationId:
+      type: "string"
+      format: "date"
+    adults:
+      type: "integer"
+      format: "int32"
+    children:
+      type: "array"
+      items:
+        type: "integer"
+        format: "int32"

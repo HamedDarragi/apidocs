@@ -1,0 +1,32 @@
+HotelFilter:
+  type: "object"
+  properties:
+    minPrice:
+      $ref: "./Price.yaml#/Price"
+    maxPrice:
+      $ref: "./Price.yaml#/Price"
+    hotelCategories:
+      type: "array"
+      items:
+        type: "integer"
+        format: "int32"
+    roomTypes:
+      type: "array"
+      items:
+        $ref: "./RoomType.yaml#/RoomType"
+    boardTypes:
+      type: "array"
+      items:
+        $ref: "./BoardType.yaml#/BoardType"
+    roomLocated:
+      type: "array"
+      items:
+        $ref: "./RoomLocated.yaml#/RoomLocated"
+    keywords:
+      type: "array"
+      items:
+        $ref: "./Keyword.yaml#/Keyword"
+    locations:
+      type: "array"
+      items:
+        $ref: "./Location.yaml#/Location"

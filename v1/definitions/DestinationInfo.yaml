@@ -1,0 +1,18 @@
+DestinationInfo:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      image:
+        type: "string"
+        format: "uri"
+      airTemperature:
+        type: "integer"
+        format: "int32"
+      waterTemperature:
+        type: "integer"
+        format: "int32"

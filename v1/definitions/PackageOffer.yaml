@@ -1,0 +1,23 @@
+PackageOffer:
+  type: "object"
+  properties:
+    code:
+      type: "string"
+    travelDate:
+      $ref: "./TravelDate.yaml#/TravelDate"
+    personPrice:
+      $ref: "./Price.yaml#/Price"
+    personPriceEuro:
+      $ref: "./Price.yaml#/Price"
+    totalPrice:
+      $ref: "./Price.yaml#/Price"
+    totalPriceEuro:
+      $ref: "./Price.yaml#/Price"
+    tourOperator:
+      $ref: "./TourOperator.yaml#/TourOperator"
+    flightOffer:
+      $ref: "./FlightOffer.yaml#/FlightOffer"
+    hotelOffer:
+      $ref: "./HotelOffer.yaml#/HotelOffer"
+    transferIncluded:
+      type: "boolean"

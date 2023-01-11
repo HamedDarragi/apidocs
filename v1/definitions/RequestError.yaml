@@ -1,0 +1,10 @@
+RequestError:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+      format: "int32"
+    message:
+      type: "string"
+    logId:
+      type: "string"

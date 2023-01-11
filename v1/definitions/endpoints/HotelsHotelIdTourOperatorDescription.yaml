@@ -1,0 +1,43 @@
+HotelsHotelIdTourOperatorDescription:
+  get:
+      tags:
+        - "hotels"
+      summary: "Returns a hotel description from the tour operator"
+      description: "Provides a Tour Operator specific description of a hotel. Descriptions are provided in German
+      and auto-translated in Danish. It is important to show the description only for the operator from the tour operator"
+      operationId: "getHotelDescription"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "hotelId"
+        in: "path"
+        description: "Hotel ID"
+        required: true
+        type: "string"
+      - name: "tourOperatorCode"
+        in: "query"
+        description: "Code of the tour operator providing the offer for the hotel"
+        required: true
+        type: "string"
+      - name: "languageCode"
+        in: "query"
+        description: "Language in which the description will be provided"
+        required: true
+        type: "string"
+        enum: [ "da", "de" ]
+      responses:
+        200:
+          description: "Requested description. Description may contain HTML markup"
+          schema:
+            type: "object"
+            properties:
+              description:
+                type: "string"
+        400:
+          description: "Request error"
+          schema:
+            $ref: "#/definitions/RequestError"
+        404:
+          description: "Requested description not found"
+        500:
+          description: "Internal Server Error. Can happen due to upstream timeouts. It is recommended to retry in this situation"

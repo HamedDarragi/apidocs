@@ -1,0 +1,11 @@
+Fact:
+  type: "object"
+  properties:
+    code:
+      type: "string"
+    name:
+      type: "string"
+    attributes:
+      type: "array"
+      items:
+        $ref: "./Attribute.yaml#/Attribute"

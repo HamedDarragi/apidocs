@@ -1,0 +1,88 @@
+Bookings:
+  post:
+    tags:
+    - "bookings"
+    security:
+    - Bearer: []
+    summary: "Books an offer"
+    description: ""
+    operationId: "postBookings"
+    consumes:
+    - "application/json"
+    produces:
+    - "application/json"
+    parameters:
+    - in: "header"
+      name: "Authorization"
+      description: "Authorization: Bearer &lt;token&gt;"
+      schema:
+        type: "string"
+    - in: "header"
+      name: "X-Mock-Response"
+      description: "On staging and dev env, can be used to force a certain response"
+      enum: [ "PAYMENT_ERROR", "RQ", "XX", "NK", "ADMIN_REQUIRED" ]
+      schema:
+        type: "string"
+    - in: "body"
+      name: "body"
+      description: "Booking request"
+      required: true
+      schema:
+        $ref: "#/definitions/BookingRequest"
+    responses:
+      200:
+        description: "successful operation"
+        schema:
+          $ref: "#/definitions/BookingResponse"
+      400:
+        description: "Invalid Payload"
+        schema:
+          $ref: "../RequestError.yaml#/RequestError"
+      401:
+        description: "Unauthorized"
+
+  get:
+    tags:
+    - "bookings"
+    security:
+    - Bearer: []
+    summary: "Gets bookings made by user"
+    description: ""
+    operationId: "getBookings"
+    produces:
+    - "application/json"
+    parameters:
+    - in: "header"
+      name: "Authorization"
+      description: "Authorization: Bearer &lt;token&gt;"
+      schema:
+        type: "string"
+      required: true
+    responses:
+      200:
+        description: "successful operation"
+        schema:
+          type: "array"
+          items:
+            $ref: "../BookedOffer.yaml#/BookedOffer"
+      401:
+        description: "Unauthorized"
+
+definitions:
+
+  BookingRequest:
+    type: "object"
+    properties:
+      bookingDraftId:
+        type: "string"
+        description: "Booking Draft Id"
+
+  BookingResponse:
+    type: "object"
+    properties:
+      statusCode:
+        type: "string"
+        description: "Booking status. OK - OK, RQ - On Request, XX - Booked Out, NK - Not OK, ADMIN_REQUIRED - Can be ok, an admin will review"
+        enum: [ "OK", "RQ", "XX", "NK", "ADMIN_REQUIRED" ]
+      bookingCode:
+        type: "string"

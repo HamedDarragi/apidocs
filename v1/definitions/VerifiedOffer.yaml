@@ -1,0 +1,20 @@
+VerifiedOffer:
+  type: "object"
+  properties:
+    statusCode:
+      type: "string"
+      description: "Verify status. OK - OK, RQ - On Request, XX - Booked Out, NK - Not OK. Booking with RQ are
+      subject to special conditions and a disclaimer should be presented to the user."
+      enum: [ "OK", "RQ", "XX", "NK" ]
+    packageOffer:
+      $ref: "./PackageOffer.yaml#/PackageOffer"
+    tourOperatorInformation:
+      $ref: "./TourOperationInformation.yaml#/TourOperationInformation"
+    bookingInformation:
+      $ref: "./BookingInformation.yaml#/BookingInformation"
+    paymentInformation:
+      $ref: "./PaymentInformation.yaml#/PaymentInformation"
+    paymentTypes:
+      type: "array"
+      items:
+        $ref: "./PaymentType.yaml#/PaymentType"

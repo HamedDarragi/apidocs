@@ -1,0 +1,15 @@
+Text:
+  type: "object"
+  properties:
+    text:
+      type: "string"
+    originalText:
+       type: "string"
+       description: "The original text that was auto-translated"
+    language:
+       type: "string"
+       enum: [ "en", "da", "de" ]
+       description: "Language in which the text is provided"
+    autoTranslated:
+       type: "boolean"
+       description: "True if the text was auto-translated using Google Translate. False otherwise"
